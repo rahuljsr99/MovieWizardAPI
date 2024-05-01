@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI.csproj": {}
+    "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI.csproj": {
+    "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI.csproj",
+        "projectUniqueName": "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI.csproj",
         "projectName": "MovieWizardAPI",
-        "projectPath": "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI.csproj",
+        "projectPath": "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI.csproj",
         "packagesPath": "C:\\Users\\91973\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\obj\\",
+        "outputPath": "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\91973\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,16 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.29, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.35.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
