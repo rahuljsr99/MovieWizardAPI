@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "vc2DZV9rwu0rV1toPNjBMP8QEaWQt3qSxqV7NW0WmXl1x+hrHo/1Brkw0vZFJ1DSS3rcOOQCJKOzsbnHuQxwuQ==",
+  "dgSpecHash": "g6f65VtAV6y9ixHDjyG9HYgstYz2vV8aCAStDQf4s7FtrVtDTzu9PmID0L/sys10AS3Lvow3LlZQJK1/3q7waQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\91973\\Documents\\Angular Project\\API\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI\\MovieWizardAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\91973\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.29\\microsoft.aspnetcore.authentication.jwtbearer.6.0.29.nupkg.sha512",
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.7\\microsoft.data.sqlclient.2.1.7.nupkg.sha512",
@@ -11,8 +12,10 @@
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.30\\microsoft.entityframeworkcore.6.0.30.nupkg.sha512",
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.30\\microsoft.entityframeworkcore.abstractions.6.0.30.nupkg.sha512",
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.30\\microsoft.entityframeworkcore.analyzers.6.0.30.nupkg.sha512",
+    "C:\\Users\\91973\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.30\\microsoft.entityframeworkcore.design.6.0.30.nupkg.sha512",
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.30\\microsoft.entityframeworkcore.relational.6.0.30.nupkg.sha512",
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.30\\microsoft.entityframeworkcore.sqlserver.6.0.30.nupkg.sha512",
+    "C:\\Users\\91973\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.30\\microsoft.entityframeworkcore.tools.6.0.30.nupkg.sha512",
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.1\\microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",
     "C:\\Users\\91973\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",

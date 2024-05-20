@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using MovieWizardAPI.Data;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +29,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+builder.Services.AddDbContext<UsersDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("MovieWizardConnection")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
