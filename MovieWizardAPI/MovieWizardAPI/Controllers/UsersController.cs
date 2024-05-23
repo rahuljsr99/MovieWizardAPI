@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using MovieWizardAPI.Data;
 using MovieWizardAPI.Models;
+using MovieWizardAPI.RequestModels;
+using System.Linq.Expressions;
+using System.Reflection.Metadata;
 
 namespace MovieWizardAPI.Controllers
 {
@@ -68,23 +71,108 @@ namespace MovieWizardAPI.Controllers
             return Ok(new { message = "User deleted successfully", deletedUser });
         }
         [HttpPost("ModifyPermissions")]//to be analyzed and completed (scope: change permissions)
-        public async Task<ActionResult> ModifyPermissions([FromBody]Users user)
+        public async Task<ActionResult> ModifyPermissions([FromBody]ModifyPermissionsRequestModel request)
         {
-            var userRecord = await _usersDbContext.Users.FindAsync(user.UserId);
+            if(request == null)
+            {
+                return BadRequest("Request is null");
+            }
+            var currentUser = await _usersDbContext.Users.FindAsync(request.currentUserId);
+            var userRecord = await _usersDbContext.Users.FindAsync(request.changeRequestUserId);
+
+            //CurrentUser checks
+            if(currentUser == null)
+            {
+                return BadRequest("Current User is null");
+            }
+            if (currentUser != null)
+            {
+                if (!currentUser.IsActive)
+                {
+                    return BadRequest("User Inactive");
+                }
+                else
+                {
+                    if(!currentUser.IsAdmin)
+                    {
+                        return BadRequest("You don't have Admin privileges");
+                    }
+                }
+            }
+
+
+            //UserRecord checks
 
             if (userRecord == null)
             {
-                return NotFound();
+                return BadRequest($"Record doesn't exists!");
+                
             }
-            else if(!userRecord.IsActive)
+            else
             {
-                return Ok(new { message = "User is already inactive", userId = userRecord.UserId });
+                //Administrator section
+                if (request.permissionChangeRequestType.Equals("Admin"))
+                {
+                    if (request.permissionChangeRequestValue)
+                    {
+                        if (userRecord.IsAdmin)
+                        {
+                            return BadRequest($"{userRecord.UserName}. is already an Administrator.");
+                        }
+                        else
+                        {
+                            userRecord.IsAdmin = true;
+                            await _usersDbContext.SaveChangesAsync();
+                            return Ok(new { message = $"{userRecord.UserName} has been granted Administrator priviledges." });
+                        }
+                    }
+                    else
+                    {
+                        if (!userRecord.IsAdmin)
+                        {
+                            return BadRequest($"{userRecord.UserName} isn't an Administrator already.");
+                        }
+                        else
+                        {
+                            userRecord.IsAdmin = false;
+                            await _usersDbContext.SaveChangesAsync();
+                            return Ok(new { message = $"{userRecord.UserName}'s Adminsitrator priviledges revoked." });
+                        }
+                    }
 
+                }
+                //Activate/Deactivate
+                else if (request.permissionChangeRequestType.Equals("Activate"))
+                {
+                    if (!request.permissionChangeRequestValue)
+                    {
+                        if (!userRecord.IsActive)
+                        {
+                            return BadRequest($"{userRecord.UserName} is already inactive");
+                        }
+                        else
+                        {
+                            userRecord.IsActive = false;
+                            await _usersDbContext.SaveChangesAsync();
+                            return Ok(new { message = $"{userRecord.UserName} is now Deactivated." });
+                        }
+                    }
+                    else
+                    {
+                        if (userRecord.IsActive)
+                        {
+                            return BadRequest($"{userRecord.UserName} is already Active.");
+                        }
+                        else
+                        {
+                            userRecord.IsActive = true;
+                            await _usersDbContext.SaveChangesAsync();
+                            return Ok(new { message = $"{userRecord.UserName} is Activated" });
+                        }
+                    }
+                }
             }
-            userRecord.IsActive = false; // Deactivated by setting IsActive to false
-            await _usersDbContext.SaveChangesAsync();
-
-            return Ok(new { message = "User deactivated successfully", userId = userRecord.UserId });
-        }
+                    return Ok(new { message = "Operation Complete for UserId ", userId = userRecord.UserId });
+                }
     }
 }
