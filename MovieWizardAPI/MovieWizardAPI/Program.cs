@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using MovieWizardAPI.Data;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<MovieContext>(options => 
+options.UseSqlServer(builder.Configuration.GetConnectionString("Movie")));
 
 var app = builder.Build();
 
