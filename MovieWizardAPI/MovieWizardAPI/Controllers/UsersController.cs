@@ -173,6 +173,6 @@ namespace MovieWizardAPI.Controllers
                 }
             }
                     return Ok(new { message = "Operation Complete for UserId ", userId = userRecord.UserId });
-                }
+        }
     }
 }
