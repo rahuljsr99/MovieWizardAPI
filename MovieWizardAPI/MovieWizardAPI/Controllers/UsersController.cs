@@ -198,5 +198,11 @@ namespace MovieWizardAPI.Controllers
             String password=user.password;
             return _usersDbContext.Users.FirstOrDefault(u => u.UserName == userName && u.Password == password && u.IsActive);
         }
+        public Users GetUser (LoginRequestModel user)
+        {
+            String userName=user.userName;
+            String password=user.password;
+            return _usersDbContext.Users.FirstOrDefault(u => u.UserName == userName && u.Password == password && u.IsActive);
+        }
     }
 }
