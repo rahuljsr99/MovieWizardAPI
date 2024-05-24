@@ -33,6 +33,24 @@ namespace MovieWizardAPI.Controllers
             await _usersDbContext.SaveChangesAsync();//asynchronously saves changes to the database. It returns the number of state entries written to the database
             return CreatedAtAction(nameof(GetUserById), new { id = user.UserId }, new { message = "User created successfully", userId = user.UserId });
         }
+        [HttpPost("Authenticate")]
+        public  async Task<ActionResult> Authenticate(LoginRequestModel login)
+        {
+            
+            var users =  GetUser(login);
+
+            if (users != null)
+            {
+                // If user is found and credentials match, return success response
+                return new JsonResult(new { success = true, message = "Login successful" });
+            }
+            else
+            {
+                // If no matching user is found, return failure response
+                return BadRequest("Invalid credentials");
+            }
+        }
+
         [HttpGet("GetUserById")]
         public async Task<ActionResult<Users>> GetUserById(int id)
         {
@@ -85,6 +103,12 @@ namespace MovieWizardAPI.Controllers
             await _usersDbContext.SaveChangesAsync();
 
             return Ok(new { message = "User deactivated successfully", userId = userRecord.UserId });
+        }
+        public Users GetUser (LoginRequestModel user)
+        {
+            String userName=user.userName;
+            String password=user.password;
+            return _usersDbContext.Users.FirstOrDefault(u => u.UserName == userName && u.Password == password && u.IsActive);
         }
     }
 }
