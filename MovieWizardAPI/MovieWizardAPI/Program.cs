@@ -33,6 +33,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<UsersDbContext>(
     options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("MovieWizardConnection")));
+
+builder.Services.AddDbContext<MoviesDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("MovieWizardConnection")));
+
+builder.Services.AddDbContext<DirectorsDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("MovieWizardConnection")));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
