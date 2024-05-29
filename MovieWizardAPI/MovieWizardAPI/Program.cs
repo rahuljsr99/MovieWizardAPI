@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MovieWizardAPI.Data;
@@ -43,6 +43,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCors(options => options
+    .AllowAnyOrigin()  // Allow requests from any origin
+    .AllowAnyMethod()   // Allow any HTTP method (GET, POST, PUT, etc.)
+    .AllowAnyHeader()); // Allow any request header
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
