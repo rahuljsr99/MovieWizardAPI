@@ -53,7 +53,7 @@ namespace MovieWizardAPI.Controllers
                 return BadRequest("Invalid credentials");
             }
         }
-
+        //InProgress
         [HttpGet("GetUserById")]
         public async Task<ActionResult<Users>> GetUserById(int id)
         {
@@ -66,6 +66,8 @@ namespace MovieWizardAPI.Controllers
 
             return user;
         }
+
+        //InProgress
         [HttpDelete("HardDeleteUser/{id}")]
         public async Task<ActionResult> HardDeleteUser(int id)
         {
@@ -198,11 +200,6 @@ namespace MovieWizardAPI.Controllers
             String password=user.password;
             return _usersDbContext.Users.FirstOrDefault(u => u.UserName == userName && u.Password == password && u.IsActive);
         }
-        public Users GetUser (LoginRequestModel user)
-        {
-            String userName=user.userName;
-            String password=user.password;
-            return _usersDbContext.Users.FirstOrDefault(u => u.UserName == userName && u.Password == password && u.IsActive);
-        }
+        
     }
 }
