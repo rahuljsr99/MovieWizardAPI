@@ -174,5 +174,41 @@ namespace MovieWizardAPI.Controllers
             }
                     return Ok(new { message = "Operation Complete for UserId ", userId = userRecord.UserId });
         }
+
+        [HttpGet("GetPagedUsers")]
+        public async Task<ActionResult<IEnumerable<Users>>> GetPagedUsers(int pageNumber = 1, int pageSize = 5)
+        {
+            var users = await _usersDbContext.Users
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            var totalRecords = await _usersDbContext.Users.CountAsync();
+
+            return Ok(new
+            {
+                totalRecords = totalRecords,
+                users = users
+            });
+        }
+        [HttpGet("GetUserCounts")]
+        public async Task<ActionResult> GetUserCounts()
+        {
+            var totalUsers = await _usersDbContext.Users.CountAsync();
+            var adminUsers = await _usersDbContext.Users.CountAsync(u => u.IsAdmin);
+            var activeUsers = await _usersDbContext.Users.CountAsync(u => u.IsActive);
+            var inactiveUsers = await _usersDbContext.Users.CountAsync(u => !u.IsActive);
+
+            return Ok(new
+            {
+                TotalUsers = totalUsers,
+                AdminUsers = adminUsers,
+                ActiveUsers = activeUsers,
+                InactiveUsers = inactiveUsers
+            });
+        }
+
+
     }
+
+
 }
