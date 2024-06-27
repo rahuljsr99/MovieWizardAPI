@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MovieWizardAPI.Data;
+using MovieWizardAPI.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +34,32 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<UsersDbContext>(
     options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("MovieWizardConnection")));
+
+builder.Services.AddDbContext<DirectorDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("MovieWizardConnection")));
+
+builder.Services.AddDbContext<MovieDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("MovieWizardConnection")));
+
+builder.Services.AddDbContext<MovieRevenueDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("MovieWizardConnection")));
+
+builder.Services.AddDbContext<MovieBudgetDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("MovieWizardConnection")));
+
+builder.Services.AddDbContext<MoviePriceDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("MovieWizardConnection")));
+
+builder.Services.AddDbContext<ActorDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("MovieWizardConnection")));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
